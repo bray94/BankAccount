@@ -57,8 +57,4 @@ class Category:
 	def getName():
 		return self.name
 
-class BankAccountInterface:
-
-
-
 	
