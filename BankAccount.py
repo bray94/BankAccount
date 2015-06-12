@@ -13,7 +13,7 @@ class BankAccount:
 			if category.getName().lower() == name.lower():
 				return True
 			else: pass
-		 return False
+		return False
 
 
 	def addCategory(self, newCategory, amount):
@@ -46,7 +46,7 @@ class BankAccount:
 
 
 class Category:
-"""Class to add catehories that transasctions will be stored under."""
+	"""Class to add catehories that transasctions will be stored under."""
 
 	def __init__(self, name, amount):
 		self.name = name
@@ -85,9 +85,14 @@ class ReadFile:
 		f = open("data.txt" , "r")
 		for line in f:
 			if (line.split())[0] == "Balance:":
-				account = BankAccount(float(((line.split())[1])[1:]))
+				inelist = line.split()
+				amount = float((linelist[1])[1:])
+				account = BankAccount(amount)
 			else:
-				account.addCategory(((line.split())[0])[0:-1] float(((line.split())[1])[1:]))
+				linelist = line.split()
+				amount = float((linelist[1])[1:])
+				name = (linelist[0])[0:-1]
+				account.addCategory(name, amount)
 		f.close()
 		return account
 
