@@ -1,7 +1,7 @@
 class BankAccount:
 
 	def __init__(self, startingValue, nameOnAccount):
-		self.balance = starttingValue
+		self.balance = startingValue
 		self.nameOnAccount = nameOnAccount
 		self.categories = []
 
@@ -34,6 +34,7 @@ class BankAccount:
 
 		else:
 			addCategory(category)
+			updateCategory(amount)
 
 
 	def checkBalance():
