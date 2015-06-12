@@ -1,3 +1,5 @@
+from Interface import *
+
 class BankAccount:
 	"""Creates a bank account with Name on Account and starting value. It will pull
 	in either data from a file, or from the user if data doesn't exist"""
@@ -44,7 +46,7 @@ class BankAccount:
 
 
 class Category:
-"""Class to add catehories that transasctions will be stores under """
+"""Class to add catehories that transasctions will be stored under."""
 
 	def __init__(self, name, amount):
 		self.name = name
@@ -61,19 +63,19 @@ class Category:
 
 class WriteToFile:
 
-	def writeBankAccountToFile(BankAccount):
+	def writeBankAccountToFile(bankAccount):
 		f = open("data.txt","r+")
 		for line in f:
 			if (line.split())[0] == "Balance:":
-				f.write("Balance: " + BankAccount.checkBalance() + "\n")
+				f.write("Balance: " + bankAccount.checkBalance() + "\n")
 			else: pass
 		f.close()
 
-	def writeCategoryToFile(Category):
+	def writeCategoryToFile(category):
 		f = open("data.txt","r+")
 		for line in f:
-			if (line.split())[0] == Category.getName() + ":":
-				f.write(Category.getName() + ": " + Category.getAmount() + "\n")
+			if (line.split())[0] == category.getName() + ":":
+				f.write(category.getName() + ": " + category.getAmount() + "\n")
 			else: pass
 		f.close()
 			
