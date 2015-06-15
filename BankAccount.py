@@ -29,7 +29,7 @@ class BankAccount:
 
 
 	def addTransaction(self, amount):
-		self.amount += amount
+		self.balance += amount
 		category = raw_input("What was it used for?")
 
 		if(categoryExistence(category)):
@@ -86,6 +86,7 @@ class ReadFile:
 
 	def initialRead(self):
 		f = open("data.txt" , "r")
+		newAccount = BankAccount(0.0)
 		for line in f:
 			if (line.split())[0] == "Balance:":
 				inelist = line.split()
@@ -97,7 +98,7 @@ class ReadFile:
 				name = (linelist[0])[0:-1]
 				account.addCategory(name, amount)
 		f.close()
-		return ccount
+		return newAccount
 
 
 def main():
