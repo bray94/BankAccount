@@ -63,7 +63,9 @@ class Category:
 
 class WriteToFile:
 
-	def writeBankAccountToFile(bankAccount):
+
+
+	def writeBankAccountToFile(self, bankAccount):
 		f = open("data.txt","r+")
 		for line in f:
 			if (line.split())[0] == "Balance:":
@@ -71,7 +73,7 @@ class WriteToFile:
 			else: pass
 		f.close()
 
-	def writeCategoryToFile(category):
+	def writeCategoryToFile(self, category):
 		f = open("data.txt","r+")
 		for line in f:
 			if (line.split())[0] == category.getName() + ":":
@@ -81,24 +83,26 @@ class WriteToFile:
 			
 class ReadFile:
 
-	def initialRead():
+
+	def initialRead(self):
 		f = open("data.txt" , "r")
 		for line in f:
 			if (line.split())[0] == "Balance:":
 				inelist = line.split()
 				amount = float((linelist[1])[1:])
-				account = BankAccount(amount)
+				newAccount = BankAccount(amount)
 			else:
 				linelist = line.split()
 				amount = float((linelist[1])[1:])
 				name = (linelist[0])[0:-1]
 				account.addCategory(name, amount)
 		f.close()
-		return account
+		return ccount
 
 
 def main():
-	account = initialRead()
+	initialRead = ReadFile()
+	account = initialRead.initialRead()
 	interface(account)
 
 
