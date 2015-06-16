@@ -10,7 +10,7 @@ class BankAccount:
 
 	def categoryExistence(self, name):
 		for category in self.categories:
-			if category.getName().lower() == name.lower():
+			if category.name.lower() == name.lower():
 				return True
 			else: pass
 		return False
@@ -20,9 +20,9 @@ class BankAccount:
 		category = Category(newCategory, amount)
 		self.categories.append(category)
 
-	def updateCategory(self, name, amount):
+	def updateCategoryInBankAccount(self, name, amount):
 		for category in self.categories:
-			if category.getName().lower() == name.lower():
+			if (category.name.lower() == name.lower()):
 				category.updateCategory(amount)
 			else:
 				pass
@@ -32,11 +32,11 @@ class BankAccount:
 		self.balance += amount
 		category = raw_input("What was it used for?")
 
-		if(categoryExistence(category)):
-			updateCategory(category,amount)
+		if(self.categoryExistence(category)):
+			self.updateCategoryInBankAccount(category,amount)
 
 		else:
-			addCategory(category, amount)
+			self.addCategory(category, amount)
 
 
 	def checkBalance(self):
@@ -52,13 +52,13 @@ class Category:
 		self.name = name
 		self.amount = amount
 
-	def updateCategory(amount):
+	def updateCategory(self, amount):
 		self.amount+= amount
 
-	def getAmount():
+	def getAmount(self):
 		return self.amount
 
-	def getName():
+	def getName(self):
 		return self.name
 
 class WriteToFile:

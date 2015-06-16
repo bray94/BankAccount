@@ -8,7 +8,7 @@ def interface(account):
 			amount = input("How much was the transaction?")
 			account.addTransaction(amount)
 		elif (answer.split()[0]).lower() == "check":
-			print (account.checkBalance() + "\n")
+			print (str(account.checkBalance()) + "\n")
 		elif (answer.split()[0]).lower() == "quit":
 			on = False
 		else:
