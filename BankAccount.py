@@ -1,4 +1,5 @@
 from Interface import *
+import pickle
 
 class BankAccount:
 	"""Creates a bank account with Name on Account and starting value. It will pull
@@ -29,7 +30,7 @@ class BankAccount:
 
 
 	def addTransaction(self, amount):
-		self.balance += amount
+		self.balance -= amount
 		category = raw_input("What was it used for?")
 
 		if(self.categoryExistence(category)):
@@ -38,15 +39,22 @@ class BankAccount:
 		else:
 			self.addCategory(category, amount)
 
+	def deposit(self, amount):
+		self.balance+= amount
 
 	def checkBalance(self):
 		return self.balance
 
 
 
+	def quit(self):
+		writeBankAccountToFile(self)
+
+
+
 
 class Category:
-	"""Class to add catehories that transasctions will be stored under."""
+	"""Class to add categories that transasctions will be stored under."""
 
 	def __init__(self, name, amount):
 		self.name = name
@@ -61,49 +69,27 @@ class Category:
 	def getName(self):
 		return self.name
 
-class WriteToFile:
 
 
-
-	def writeBankAccountToFile(self, bankAccount):
-		f = open("data.txt","r+")
-		for line in f:
-			if (line.split())[0] == "Balance:":
-				f.write("Balance: " + bankAccount.checkBalance() + "\n")
-			else: pass
-		f.close()
-
-	def writeCategoryToFile(self, category):
-		f = open("data.txt","r+")
-		for line in f:
-			if (line.split())[0] == category.getName() + ":":
-				f.write(category.getName() + ": " + category.getAmount() + "\n")
-			else: pass
-		f.close()
-			
-class ReadFile:
+def writeBankAccountToFile(account):
+	f = open("data.txt","r+")
+	pickle.dump(account, f)
+	f.close()
 
 
-	def initialRead(self):
-		f = open("data.txt" , "r")
-		newAccount = BankAccount(0.0)
-		for line in f:
-			if (line.split())[0] == "Balance:":
-				inelist = line.split()
-				amount = float((linelist[1])[1:])
-				newAccount = BankAccount(amount)
-			else:
-				linelist = line.split()
-				amount = float((linelist[1])[1:])
-				name = (linelist[0])[0:-1]
-				account.addCategory(name, amount)
+def initialRead():
+	f = open("data.txt" , "r")
+	try:
+		newAccount = pickle.load(f)
 		f.close()
 		return newAccount
-
+	except EOFError:
+		amount = float(raw_input("What is the starting amount?"))
+		newAccount = BankAccount(amount)
+		return newAccount
 
 def main():
-	initialRead = ReadFile()
-	account = initialRead.initialRead()
+	account = initialRead()
 	interface(account)
 
 
