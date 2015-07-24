@@ -78,7 +78,7 @@ def writeBankAccountToFile(account):
 
 
 def initialRead():
-	f = open("data.txt" , "r")
+	f = open("data.txt" , "r+")
 	try:
 		newAccount = pickle.load(f)
 		f.close()
