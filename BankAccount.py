@@ -29,9 +29,8 @@ class BankAccount:
 				pass
 
 
-	def addTransaction(self, amount):
+	def addTransaction(self, amount, category):
 		self.balance -= amount
-		category = raw_input("What was it used for?")
 
 		if(self.categoryExistence(category)):
 			self.updateCategoryInBankAccount(category,amount)
