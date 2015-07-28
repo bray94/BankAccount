@@ -1,5 +1,6 @@
 import pickle
 import Graphics as graph
+from Tkinter import *
 
 class BankAccount:
 	"""Creates a bank account with Name on Account and starting value. It will pull
@@ -69,6 +70,7 @@ class Category:
 		return self.name
 
 class App:
+	"""Class to add the interface for the app"""
 
 	def __init__(self, window, account):
 		self.account = account
@@ -133,6 +135,7 @@ class App:
 		self.window.quit()
 
 
+#Other misc. functions
 
 def writeBankAccountToFile(account):
 	f = open("data.txt","r+")
@@ -141,7 +144,10 @@ def writeBankAccountToFile(account):
 
 
 def initialRead():
-	f = open("data.txt" , "r+")
+	try:
+		f = open("data.txt" , "r")
+	except IOError:
+		f = open("data.txt" , "r+")
 	try:
 		newAccount = pickle.load(f)
 		f.close()

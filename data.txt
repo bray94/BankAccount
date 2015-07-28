@@ -1,0 +1,11 @@
+(i__main__
+BankAccount
+p0
+(dp1
+S'balance'
+p2
+F56.0
+sS'categories'
+p3
+(lp4
+sb.
